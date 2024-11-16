@@ -25,9 +25,9 @@ public class OrderController {
         return new ResponseEntity<List<Order>>(orderService.allOrders(), HttpStatus.OK);
     }
 
-    @GetMapping("/{id}")
-    public ResponseEntity<Optional<Order>> getSingleOrder(@PathVariable ObjectId id) {
+    @GetMapping("/{orderId}")
+    public ResponseEntity<Optional<Order>> getSingleOrder(@PathVariable int orderId) {
         System.out.println("GET /api/orders called");
-        return new ResponseEntity<Optional<Order>>(orderService.singleOrder(id), HttpStatus.OK);
+        return new ResponseEntity<Optional<Order>>(orderService.singleOrder(orderId), HttpStatus.OK);
     }
 }

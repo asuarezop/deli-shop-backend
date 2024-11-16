@@ -30,8 +30,8 @@ public class OrderService {
     }
 
     //Getting a single order by unique id
-    public Optional<Order> singleOrder(ObjectId id) {
-        return orderRepository.findById(id);/*
+    public Optional<Order> singleOrder(int orderId) {
+        return orderRepository.findOrderByOrderId(orderId);/*
     * Method returns Optional<Order>
         -Optional is a container object that can return either a null or non-null value
         * Why we need to specify it in this method is because an Order may contain an id that doesn't exist
