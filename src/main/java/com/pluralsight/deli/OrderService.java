@@ -1,13 +1,13 @@
 package com.pluralsight.deli;
 
+import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.event.EventListener;
-import org.springframework.data.mongodb.core.MongoTemplate;
-import org.springframework.data.mongodb.core.aggregation.BooleanOperators;
-import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.stereotype.Service;
+
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class OrderService {
@@ -24,8 +24,19 @@ public class OrderService {
         testFetchOrders();
     }
 
-    public List<Order> allOrders(){
+    //Getting all orders
+    public List<Order> allOrders() {
         return orderRepository.findAll();
+    }
+
+    //Getting a single order by unique id
+    public Optional<Order> singleOrder(ObjectId id) {
+        return orderRepository.findById(id);/*
+    * Method returns Optional<Order>
+        -Optional is a container object that can return either a null or non-null value
+        * Why we need to specify it in this method is because an Order may contain an id that doesn't exist
+        * The compiler would return null if the id doesn't exist on the Order
+    * */
     }
 
     public void testFetchOrders() {
